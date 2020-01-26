@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
@@ -11,16 +11,16 @@ const Application = () => {
 
     return (
         <Provider store={store}>
-            <nav>
-
-            </nav>
-            <main>
-                <Router>
+            <Router>
+                <nav>
+                    <NavLink to="/encounter">Encounter</NavLink>
+                </nav>
+                <main>
                     <Route path="/encounter">
                         <EncounterController />
                     </Route>
-                </Router>
-            </main>
+                </main>
+            </Router>
         </Provider>
     );
 }

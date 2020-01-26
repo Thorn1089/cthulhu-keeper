@@ -1,6 +1,6 @@
-describe('Sanity test', () => {
+describe('The top-level app shell', () => {
     it('Loads the main page', () => {
         cy.visit('/');
-        cy.contains('Hello, World!');
+        cy.contains('Encounter');
     });
 });
