@@ -1,6 +1,7 @@
 # Combat
 
 Combat in Call of Cthulhu is fairly straightforward.
+Combat encounters take place between two or more combatants (it doesn't make sense having a solo encounter!).
 
 ## Turn Order
 
@@ -41,3 +42,7 @@ Dying characters continue to make CON checks each round until they are stabilize
 | combatants: Set<Combatant> |
 | currentlyActing: Combatant |
 +----------------------------+
+
+## Actions Summary
+
+- startEncounter(Set<Combatant>)
