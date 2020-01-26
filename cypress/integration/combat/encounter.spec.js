@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
 describe('Combat encounter management', () => {
-    it('Allows a Keeper to create an encounter with some combatants', () => {
+    it('Allows a Keeper to start an encounter with some combatants and then end it', () => {
         cy.visit('/encounter');
 
         cy.get('button:contains("New Encounter")').as('newEncounter');
@@ -35,5 +35,10 @@ describe('Combat encounter management', () => {
             cy.contains('William Harvey');
             cy.contains('Irene Power');
         });
+
+        cy.contains('End Encounter').click();
+
+        cy.get('h2:contains("Combatants")').should('not.exist');
+        cy.get('@newEncounter').should('exist');
     });
 });

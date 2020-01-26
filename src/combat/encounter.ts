@@ -12,7 +12,7 @@ const createEncounter = (combatants: Set<Combatant>): Encounter => {
     return { combatants };
 }
 
-type EncounterActions = "START_ENCOUNTER";
+type EncounterActions = "START_ENCOUNTER" | "END_ENCOUNTER";
 
 interface StartEncounterAction extends Action<EncounterActions> {
     type: "START_ENCOUNTER";
@@ -23,13 +23,21 @@ const startEncounter = (combatants: Set<Combatant>): StartEncounterAction => ({ 
 
 const isStartEncounterAction = (action: Action): action is StartEncounterAction => action.type === "START_ENCOUNTER";
 
-interface EncounterState {
-    encounter: Encounter | null;
+interface EndEncounterAction extends Action<EncounterActions> {
+    type: "END_ENCOUNTER";
 }
 
-const encounter: Reducer<EncounterState, Action> = (state = { encounter: null }, action) => {
+const endEncounter = (): EndEncounterAction => ({ type: "END_ENCOUNTER" });
+
+const isEndEncounterAction = (action: Action): action is EndEncounterAction => action.type === "END_ENCOUNTER";
+
+type EncounterState = Encounter | null;
+
+const encounter: Reducer<EncounterState, Action> = (state = null, action) => {
     if (isStartEncounterAction(action)) {
-        return { encounter: createEncounter(action.combatants) };
+        return createEncounter(action.combatants);
+    } else if (isEndEncounterAction(action)) {
+        return null;
     }
     return state;
 }
@@ -37,5 +45,6 @@ const encounter: Reducer<EncounterState, Action> = (state = { encounter: null },
 export default Encounter;
 export { createEncounter };
 export { startEncounter };
+export { endEncounter };
 export { encounter };
 export { EncounterState };

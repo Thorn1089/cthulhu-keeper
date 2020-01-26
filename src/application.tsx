@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
+import { combat } from "./combat/combat";
 import EncounterController from "./combat/encounter-controller";
-import { encounter } from "./combat/encounter";
 
 const Application = () => {
-    const store = createStore(encounter);
+    const store = createStore(combat);
 
     return (
         <Provider store={store}>
@@ -15,7 +15,6 @@ const Application = () => {
 
             </nav>
             <main>
-                <h1>Hello, World!</h1>
                 <Router>
                     <Route path="/encounter">
                         <EncounterController />
