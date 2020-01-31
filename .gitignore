@@ -1,3 +1,5 @@
 node_modules/
 dist/
 .cache/
+.scannerwork
+test-report.xml
