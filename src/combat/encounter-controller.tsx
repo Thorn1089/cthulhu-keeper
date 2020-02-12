@@ -6,7 +6,7 @@ import Combatant from "./combatant";
 import CreateEncounterDialog from "./create-encounter-dialog";
 import CombatantList from "./combatant-list";
 import ActiveCombatant from "./active-combatant";
-import Encounter, { EncounterState, startEncounter, endEncounter, nextTurn } from "./encounter";
+import Encounter, { startEncounter, endEncounter, nextTurn } from "./encounter";
 import { CombatState } from "./combat";
 
 interface StateProps {
@@ -50,7 +50,7 @@ const EncounterController = ({ encounter, startEncounter, endEncounter, nextTurn
     )
 };
 
-const mapStateToProps = ({ encounter }: CombatState): StateProps => {
+const mapStateToProps = ({ combat: { encounter } }: { combat: CombatState }): StateProps => {
     return { encounter };
 }
 
