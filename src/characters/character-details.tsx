@@ -33,6 +33,18 @@ const CharacterDetails = ({ character }: Props) => {
                 {showCharacteristic(Characteristic.Sanity)}
             </dl>
 
+            <h4>Skills</h4>
+            <dl>
+                {character.skills.map((skill, index) => {
+                    return (
+                        <React.Fragment key={index}>
+                            <dt>{skill.name}</dt>
+                            <dd>{skill.rating}</dd>
+                        </React.Fragment>
+                    )
+                })}
+            </dl>
+
             <h4>Notes</h4>
             <p>
                 {character.notes}

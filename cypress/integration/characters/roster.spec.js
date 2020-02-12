@@ -26,6 +26,20 @@ describe('Character roster management', () => {
                 cy.get('label:contains("SAN")').next('input').type('{selectall}50');
             });
 
+            cy.get('legend:contains("Skills")').parents('fieldset').within(() => {
+                cy.get('button:contains("Add Skill")').as('newSkill');
+
+                cy.get('@newSkill').click();
+
+                cy.get('label:contains("Skill"):last()').next('input').type('Fighting (Brawl)');
+                cy.get('label:contains("Rating"):last()').next('input').type('50');
+
+                cy.get('@newSkill').click();
+
+                cy.get('label:contains("Skill"):last()').next('input').type('Spot Hidden');
+                cy.get('label:contains("Rating"):last()').next('input').type('75');
+            });
+
             cy.get('button:contains("Create Character")').click();
         });
 

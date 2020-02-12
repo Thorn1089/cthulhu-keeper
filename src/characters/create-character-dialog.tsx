@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, FieldArray } from "formik";
 import Character, { Characteristic } from "./character";
 
 const defaultCharacter: Character = {
@@ -15,7 +15,8 @@ const defaultCharacter: Character = {
         [Characteristic.Size]: 50,
         [Characteristic.Education]: 50,
         [Characteristic.Sanity]: 50
-    }
+    },
+    skills: []
 }
 
 interface Props {
@@ -25,7 +26,7 @@ interface Props {
 const CreateCharacterDialog = ({ onCreate }: Props) => {
     return (
         <Formik<Character> initialValues={defaultCharacter} onSubmit={onCreate}>
-            {() => {
+            {({ values }) => {
                 return (
                     <Form>
                         <fieldset>
@@ -56,6 +57,34 @@ const CreateCharacterDialog = ({ onCreate }: Props) => {
                             <Field name={`characteristics.${Characteristic.Education}`} />
                             <label>SAN</label>
                             <Field name={`characteristics.${Characteristic.Sanity}`} />
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Skills</legend>
+
+                            <FieldArray name="skills">
+                                {({ push }) => {
+                                    return (
+                                        <>
+                                            <ul>
+                                                {values.skills.map((skill, index) => {
+                                                    return (
+                                                        <li key={index}>
+                                                            <label>Skill</label>
+                                                            <Field name={`skills[${index}].name`} />
+                                                            <label>Rating</label>
+                                                            <Field name={`skills[${index}].rating`} />
+                                                        </li>
+                                                    );
+                                                })}
+                                            </ul>
+                                            <button type="button" onClick={() => push({ name: '', rating: 1 })}>Add Skill</button>
+                                        </>
+                                    )
+                                }}
+                            </FieldArray>
+
+
                         </fieldset>
 
                         <button type="submit">Create Character</button>

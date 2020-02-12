@@ -12,6 +12,11 @@ enum Characteristic {
 
 type CharacteristicValue = number;
 
+interface Skill {
+    name: string;
+    rating: number;
+}
+
 interface Character {
     name: string;
     notes: string;
@@ -25,7 +30,8 @@ interface Character {
         [Characteristic.Size]: CharacteristicValue;
         [Characteristic.Education]: CharacteristicValue;
         [Characteristic.Sanity]: CharacteristicValue;
-    }
+    };
+    skills: Skill[];
 }
 
 export default Character;
